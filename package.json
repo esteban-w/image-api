@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prettier": "prettier --config .prettierrc 'src/**/*.js' --write",
+    "lint": "eslint . --ext .ts",
     "build": "npx tsc"
   },
   "repository": {
