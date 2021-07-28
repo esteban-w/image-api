@@ -1,0 +1,20 @@
+{
+  "name": "image-api",
+  "version": "1.0.0",
+  "description": "This is an image API project that returns images formatted according to query parameters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esteban-w/image-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/esteban-w/image-api/issues"
+  },
+  "homepage": "https://github.com/esteban-w/image-api#readme"
+}
