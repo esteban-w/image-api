@@ -4,7 +4,7 @@
   "description": "This is an image API project that returns images formatted according to query parameters",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettier": "prettier --config .prettierrc 'src/**/*.js' --write"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/esteban-w/image-api/issues"
   },
-  "homepage": "https://github.com/esteban-w/image-api#readme"
+  "homepage": "https://github.com/esteban-w/image-api#readme",
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
 }
