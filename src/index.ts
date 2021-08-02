@@ -9,5 +9,5 @@ app.use('/api', routes)
 
 // start the express server
 app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}/api`)
+    console.log(`server started at http://localhost:${port}/api/images`)
 })

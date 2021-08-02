@@ -4,9 +4,9 @@ import imageProcessing from '../../imageProcessing';
 const images = Router();
 const fileHandler = async (res: Response, imageName: string, imageExt: string, imageWidth: string, imageHeight: string) => {
     try {
-        const imageToSend = await imageProcessing(imageName, imageExt, imageWidth, imageHeight);
+        const imagePath = await imageProcessing(imageName, imageExt, imageWidth, imageHeight);
 
-        res.sendFile(imageToSend, {maxAge: '2 days'}, err => {
+        res.sendFile(imagePath, {maxAge: '2 days'}, err => {
             if (err) {
                 res.status(500).send('An error has occurred while sending the requested asset')
             }
@@ -18,14 +18,14 @@ const fileHandler = async (res: Response, imageName: string, imageExt: string, i
 
 images.get('/',  (req, res) => {
     const filename = req.query.filename;
-    const filenameMatches = typeof filename === 'string'
+    const filenameMatch = typeof filename === 'string'
         ? filename.match(/(\w+)\.(gif|png|jpe?g)$/) : null;
 
-    if (filenameMatches) {
+    if (filenameMatch) {
         fileHandler(
             res,
-            filenameMatches[1],
-            filenameMatches[2],
+            filenameMatch[1],
+            filenameMatch[2],
             typeof req.query.width === 'string' ? req.query.width : '',
             typeof req.query.height === 'string' ? req.query.height : ''
         );
@@ -34,7 +34,7 @@ images.get('/',  (req, res) => {
     }
 })
 
-images.get('/:imageName(\\w+).:imageExt(gif|png|jpe?g)', async (req, res) => {
+images.get('/:imageName(\\w+).:imageExt(gif|png|jpe?g)', (req, res) => {
     fileHandler(
         res,
         req.params.imageName,

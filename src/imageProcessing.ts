@@ -10,7 +10,7 @@ const imageProcessing = async (imageName:string, imageExt:string, imageWidth:str
     // check if image requested does in fact exist
     await fsPromises.access(imageFullPath, constants.F_OK);
 
-    // make sure both width and height are truthy values and they're number values
+    // make sure both width and height are truthy values and they are number values
     if (imageWidth && imageHeight && !isNaN(parseInt(imageWidth)) && !isNaN(parseInt(imageHeight))) {
         const resizedImagePath = `${assetsThumbsPath}${imageName}${imageWidth}x${imageHeight}.${imageExt}`;
 
