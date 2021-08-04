@@ -33,7 +33,7 @@ images.get('/', (req, res) => {
     const filename = req.query.filename;
     const filenameMatch =
         typeof filename === 'string'
-            ? filename.match(/(\w+)\.(gif|png|jpe?g)$/)
+            ? filename.match(/(\w+)\.(png|jpe?g)$/)
             : null;
 
     if (filenameMatch) {
@@ -49,7 +49,7 @@ images.get('/', (req, res) => {
     }
 });
 
-images.get('/:imageName(\\w+).:imageExt(gif|png|jpe?g)', (req, res) => {
+images.get('/:imageName(\\w+).:imageExt(png|jpe?g)', (req, res) => {
     fileHandler(
         res,
         req.params.imageName,
