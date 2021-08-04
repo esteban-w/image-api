@@ -14,6 +14,7 @@ const imageProcessing = async (
 
     // check if image requested does in fact exist
     await fsPromises.access(imageFullPath, constants.F_OK);
+    console.log('full size image requested has been found');
 
     // make sure both width and height are truthy values and they are number values
     if (
@@ -27,15 +28,19 @@ const imageProcessing = async (
         // check if resized image already exists, otherwise create it
         try {
             await fsPromises.access(resizedImagePath, constants.F_OK);
+            console.log('resized image requested already exists and will be returned');
         } catch {
             await sharp(imageFullPath)
                 .resize(parseInt(imageWidth), parseInt(imageHeight))
                 .toFile(resizedImagePath);
+            console.log('resized image requested has been created and will be returned');
         }
+
         return new Promise((resolve) => {
             resolve(resizedImagePath);
         });
     }
+
     return new Promise((resolve) => {
         resolve(imageFullPath);
     });
