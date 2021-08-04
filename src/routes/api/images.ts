@@ -8,7 +8,7 @@ const fileHandler = async (
     imageExt: string,
     imageWidth: string,
     imageHeight: string
-) => {
+): Promise<void> => {
     try {
         const imagePath = await imageProcessing(
             imageName,
