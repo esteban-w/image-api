@@ -10,12 +10,16 @@ describe('Test /api/images endpoint responses', () => {
     });
 
     it('returns not found status when providing non-existing file as filename query param', async () => {
-        const response = await request.get('/api/images?filename=dummyImage.jpg');
+        const response = await request.get(
+            '/api/images?filename=dummyImage.jpg'
+        );
         expect(response.status).toBe(404);
     });
 
     it('returns found file when providing existing JPG as filename query param', async () => {
-        const response = await request.get('/api/images?filename=santamonica.jpg');
+        const response = await request.get(
+            '/api/images?filename=santamonica.jpg'
+        );
         expect(response.status).toBe(200);
     });
 
@@ -30,17 +34,23 @@ describe('Test /api/images endpoint responses', () => {
     });
 
     it('returns resized JPG when specifying filename, width and height as query params', async () => {
-        const response = await request.get('/api/images?filename=santamonica.jpg&width=300&height=100');
+        const response = await request.get(
+            '/api/images?filename=santamonica.jpg&width=300&height=100'
+        );
         expect(response.status).toBe(200);
     });
 
     it('returns resized PNG when specifying filename, width and height as query params', async () => {
-        const response = await request.get('/api/images?filename=sunset.png&width=300&height=100');
+        const response = await request.get(
+            '/api/images?filename=sunset.png&width=300&height=100'
+        );
         expect(response.status).toBe(200);
     });
 
     it('returns resized JPEG when specifying filename, width and height as query params', async () => {
-        const response = await request.get('/api/images?filename=space.jpeg&width=300&height=100');
+        const response = await request.get(
+            '/api/images?filename=space.jpeg&width=300&height=100'
+        );
         expect(response.status).toBe(200);
     });
 
@@ -65,17 +75,23 @@ describe('Test /api/images endpoint responses', () => {
     });
 
     it('returns resized JPG when specifying filename, width and height as route params', async () => {
-        const response = await request.get('/api/images/santamonica.jpg?width=300&height=100');
+        const response = await request.get(
+            '/api/images/santamonica.jpg?width=300&height=100'
+        );
         expect(response.status).toBe(200);
     });
 
     it('returns resized PNG when specifying filename, width and height as route params', async () => {
-        const response = await request.get('/api/images/sunset.png?width=300&height=100');
+        const response = await request.get(
+            '/api/images/sunset.png?width=300&height=100'
+        );
         expect(response.status).toBe(200);
     });
 
     it('returns resized JPEG when specifying filename, width and height as route params', async () => {
-        const response = await request.get('/api/images/space.jpeg?width=300&height=100');
+        const response = await request.get(
+            '/api/images/space.jpeg?width=300&height=100'
+        );
         expect(response.status).toBe(200);
     });
 });

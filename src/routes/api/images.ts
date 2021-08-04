@@ -1,25 +1,40 @@
-import {Response, Router} from 'express';
+import { Response, Router } from 'express';
 import imageProcessing from '../../imageProcessing';
 
 const images = Router();
-const fileHandler = async (res: Response, imageName: string, imageExt: string, imageWidth: string, imageHeight: string) => {
+const fileHandler = async (
+    res: Response,
+    imageName: string,
+    imageExt: string,
+    imageWidth: string,
+    imageHeight: string
+) => {
     try {
-        const imagePath = await imageProcessing(imageName, imageExt, imageWidth, imageHeight);
+        const imagePath = await imageProcessing(
+            imageName,
+            imageExt,
+            imageWidth,
+            imageHeight
+        );
 
-        res.sendFile(imagePath, {maxAge: '2 days'}, err => {
+        res.sendFile(imagePath, { maxAge: '2 days' }, (err) => {
             if (err) {
-                res.status(500).send('An error has occurred while sending the requested asset')
+                res.status(500).send(
+                    'An error has occurred while sending the requested asset'
+                );
             }
-        })
+        });
     } catch {
-        res.status(404).send(`Unable to find file: ${imageName}.${imageExt}`)
+        res.status(404).send(`Unable to find file: ${imageName}.${imageExt}`);
     }
-}
+};
 
-images.get('/',  (req, res) => {
+images.get('/', (req, res) => {
     const filename = req.query.filename;
-    const filenameMatch = typeof filename === 'string'
-        ? filename.match(/(\w+)\.(gif|png|jpe?g)$/) : null;
+    const filenameMatch =
+        typeof filename === 'string'
+            ? filename.match(/(\w+)\.(gif|png|jpe?g)$/)
+            : null;
 
     if (filenameMatch) {
         fileHandler(
@@ -30,9 +45,9 @@ images.get('/',  (req, res) => {
             typeof req.query.height === 'string' ? req.query.height : ''
         );
     } else {
-        res.send('No file was specified correctly')
+        res.send('No file was specified correctly');
     }
-})
+});
 
 images.get('/:imageName(\\w+).:imageExt(gif|png|jpe?g)', (req, res) => {
     fileHandler(
@@ -42,6 +57,6 @@ images.get('/:imageName(\\w+).:imageExt(gif|png|jpe?g)', (req, res) => {
         typeof req.query.width === 'string' ? req.query.width : '',
         typeof req.query.height === 'string' ? req.query.height : ''
     );
-})
+});
 
 export default images;
