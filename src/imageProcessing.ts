@@ -28,12 +28,16 @@ const imageProcessing = async (
         // check if resized image already exists, otherwise create it
         try {
             await fsPromises.access(resizedImagePath, constants.F_OK);
-            console.log('resized image requested already exists and will be returned');
+            console.log(
+                'resized image requested already exists and will be returned'
+            );
         } catch {
             await sharp(imageFullPath)
                 .resize(parseInt(imageWidth), parseInt(imageHeight))
                 .toFile(resizedImagePath);
-            console.log('resized image requested has been created and will be returned');
+            console.log(
+                'resized image requested has been created and will be returned'
+            );
         }
 
         return new Promise((resolve) => {

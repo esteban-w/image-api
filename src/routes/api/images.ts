@@ -49,14 +49,17 @@ images.get('/', (req: Request, res: Response): void => {
     }
 });
 
-images.get('/:imageName(\\w+).:imageExt(png|jpe?g)', (req: Request, res: Response): void => {
-    fileHandler(
-        res,
-        req.params.imageName,
-        req.params.imageExt,
-        typeof req.query.width === 'string' ? req.query.width : '',
-        typeof req.query.height === 'string' ? req.query.height : ''
-    );
-});
+images.get(
+    '/:imageName(\\w+).:imageExt(png|jpe?g)',
+    (req: Request, res: Response): void => {
+        fileHandler(
+            res,
+            req.params.imageName,
+            req.params.imageExt,
+            typeof req.query.width === 'string' ? req.query.width : '',
+            typeof req.query.height === 'string' ? req.query.height : ''
+        );
+    }
+);
 
 export default images;
