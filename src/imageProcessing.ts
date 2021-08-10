@@ -43,6 +43,12 @@ const imageProcessing = async (
         return new Promise((resolve) => {
             resolve(resizedImagePath);
         });
+    } else if (
+        imageWidth &&
+        imageHeight &&
+        (isNaN(parseInt(imageWidth)) || isNaN(parseInt(imageHeight)))
+    ) {
+        throw Error('Values for width and height must be numbers');
     }
 
     return new Promise((resolve) => {
