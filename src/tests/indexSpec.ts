@@ -1,5 +1,6 @@
 import supertest from 'supertest';
 import app from '../index';
+import imageProcessing from '../imageProcessing';
 
 const request = supertest(app);
 
@@ -93,5 +94,16 @@ describe('Test /api/images endpoint responses', () => {
             '/api/images/space.jpeg?width=300&height=100'
         );
         expect(response.status).toBe(200);
+    });
+
+    it('throws error when providing non-existing file to image processing function', async () => {
+        await expectAsync(
+            imageProcessing('dummyImage', 'jpg', '', '')
+        ).toBeRejectedWithError();
+    });
+
+    it('returns file path when providing existing image file to image processing function', async () => {
+        const result = await imageProcessing('santamonica', 'jpg', '', '');
+        expect(result).toContain('/santamonica.jpg');
     });
 });
