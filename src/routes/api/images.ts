@@ -24,8 +24,14 @@ const fileHandler = async (
                 );
             }
         });
-    } catch {
-        res.status(404).send(`Unable to find file: ${imageName}.${imageExt}`);
+    } catch (e) {
+        if (e.code === 'ENOENT') {
+            res.status(404).send(
+                `Unable to find file: ${imageName}.${imageExt}`
+            );
+        } else {
+            res.status(500).send(e.toString());
+        }
     }
 };
 
