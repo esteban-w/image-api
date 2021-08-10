@@ -9,27 +9,39 @@ This is an image API project that returns images formatted according to query pa
 
 2. initialize server by running: `npm run start`.
 
-3. a full size image can be requested by specifying ``filename`` query parameter, e.g: 
+3. once initialized the endpoint `http://localhost:3000/api/images` could be accessed 
+
+4. a full size image can be requested by specifying ``filename`` query parameter, e.g: 
     ```
-    http://localhost:300/api/images?filename=santamonica.jpg
+    http://localhost:3000/api/images?filename=santamonica.jpg
     ```
    (supported image name characters are `[A-Za-z0-9_]`, and supported image formats are `jpg`, `jpeg`, `png`).
 
-4. resized images can be requested by specifying ``filename``, ``width``, ``height`` query parameters, e.g:
+5. resized images can be requested by specifying ``filename``, ``width``, ``height`` query parameters, e.g:
     ```
-    http://localhost:300/api/images?filename=santamonica.jpg&width=300&height=100
+    http://localhost:3000/api/images?filename=santamonica.jpg&width=300&height=100
     ```
    (`width` and `height` must be numbers).
 
-5. a full size image can also be requested by directly specifying a file as route parameter, e.g: 
+6. a full size image can also be requested by directly specifying a file as route parameter, e.g: 
     ```
-    http://localhost:300/api/images/santamonica.jpg
+    http://localhost:3000/api/images/santamonica.jpg
     ```
    (supported image name characters are `[A-Za-z0-9_]`, and supported image formats are `jpg`, `jpeg`, `png`).
 
-6. resized images can also be requested by specifying a file as route parameter and ``width``, ``height`` as 
+7. resized images can also be requested by specifying a file as route parameter and ``width``, ``height`` as 
    query parameters, e.g:
    ```
-    http://localhost:300/api/images/santamonica.jpg?width=300&height=100
+    http://localhost:3000/api/images/santamonica.jpg?width=300&height=100
     ```
    (`width` and `height` must be numbers)
+
+## Scripts available
+
+The following scripts are available to run from the project's root folder:
+
+- `npm run start` to initialize the server
+- `npm run prettier` to format the project's code files
+- `npm run lint` to find and fix any problems in the project's code files
+- `npm run test` to run all test suites
+- `npm run build` to build production code
