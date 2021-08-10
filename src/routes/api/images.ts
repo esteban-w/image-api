@@ -1,4 +1,4 @@
-import { Response, Router } from 'express';
+import { Request, Response, Router } from 'express';
 import imageProcessing from '../../imageProcessing';
 
 const images = Router();
@@ -29,7 +29,7 @@ const fileHandler = async (
     }
 };
 
-images.get('/', (req, res) => {
+images.get('/', (req: Request, res: Response): void => {
     const filename = req.query.filename;
     const filenameMatch =
         typeof filename === 'string'
@@ -49,7 +49,7 @@ images.get('/', (req, res) => {
     }
 });
 
-images.get('/:imageName(\\w+).:imageExt(png|jpe?g)', (req, res) => {
+images.get('/:imageName(\\w+).:imageExt(png|jpe?g)', (req: Request, res: Response): void => {
     fileHandler(
         res,
         req.params.imageName,
